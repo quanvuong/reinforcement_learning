@@ -1,9 +1,7 @@
 import numpy as np
 import sys
-sys.path.append('../../')
+sys.path.append('../')
 from env.gridworld import GridWorld
-
-env = GridWorld()
 
 
 def update_rule(policy, env, state, states_values, discount):
@@ -40,11 +38,16 @@ def policy_evaluation(policy, env, discount=1.0, stopping_condition=0.0001):
     return states_values.reshape(env.shape)
 
 
-random_policy = {}
-action_enum = GridWorld.get_action_enum()
-for state in env.get_state_space():
-    actions = env.get_possible_actions(state)
-    random_policy[state] = {}
-    for action in actions:
-        random_policy[state][action] = 0.25  # 1/4 (equal likelihood among actions)
-print(policy_evaluation(random_policy, env))
+def get_random_policy(env):
+    random_policy = {}
+    for state in env.get_state_space():
+        actions = env.get_possible_actions(state)
+        random_policy[state] = {}
+        for action in actions:
+            random_policy[state][action] = 0.25  # 1/4 (equal likelihood among actions)
+    return random_policy
+
+if __name__ == '__main__':
+    env = GridWorld()
+    policy = get_random_policy(env)
+    print(policy_evaluation(policy, env))
