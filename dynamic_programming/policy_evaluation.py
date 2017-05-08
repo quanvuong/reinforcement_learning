@@ -2,6 +2,7 @@ import numpy as np
 import sys
 sys.path.append('../')
 from env.gridworld import GridWorld
+from lib.policy import RandomPolicy
 
 
 def update_rule(policy, env, state, states_values, discount):
@@ -49,5 +50,5 @@ def get_random_policy(env):
 
 if __name__ == '__main__':
     env = GridWorld()
-    policy = get_random_policy(env)
+    policy = RandomPolicy(env)
     print(policy_evaluation(policy, env))
