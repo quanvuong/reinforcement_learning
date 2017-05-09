@@ -11,3 +11,6 @@ class RandomPolicy(object):
 
     def __getitem__(self, item):
         return self.policy[item]
+
+    def __setitem__(self, key, value):
+        self.policy[key] = value
