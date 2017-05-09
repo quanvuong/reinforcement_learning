@@ -2,7 +2,7 @@ from gym.envs.toy_text import discrete
 import numpy as np
 from enum import Enum
 import sys
-
+from env.custom import EnvAbstract
 
 class Action(Enum):
     UP = 0
@@ -11,7 +11,7 @@ class Action(Enum):
     LEFT = 3
 
 
-class GridWorld(discrete.DiscreteEnv):
+class GridWorld(EnvAbstract, discrete.DiscreteEnv):
     '''Sutton Example 4.1'''
 
     metadata = {'render.modes': ['human']}

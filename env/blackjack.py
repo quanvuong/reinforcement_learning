@@ -1,8 +1,9 @@
 from gym.envs.toy_text import BlackjackEnv
+from env.custom import EnvAbstract
 
-#  temporary fixes for
+#  spec = None temporary fixes for
 #  https://github.com/openai/gym/pull/583
-class Blackjack(BlackjackEnv):
+class Blackjack(EnvAbstract, BlackjackEnv):
 
     def __init__(self, **kwargs):
         self.spec = None
