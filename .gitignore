@@ -38,3 +38,5 @@ Thumbs.db
 
 # Custom
 .idea
+/gym/
+Would skip repository gym/
