@@ -211,7 +211,7 @@ def make_eps_greedy_policy(estimator, nA):
     """
     Creates an epsilon greedy policy based on a Q-function approximator and epsilon
     :param estimator: An estimator that returns q values for a given state
-    :param nA: number of actions in env
+    :param nA: number of actions in envs
     :return: A function that takes (sess, observation, epsilon) as an argument and returns
         the probabilities for each action in the form of a numpy array of length nA
     """
@@ -265,7 +265,7 @@ def DQN(sess,
     Finds the optimal greedy policy while following an epsilon-greedy policy
      
     :param sess: TF sess 
-    :param env: openAI env
+    :param env: openAI envs
     :param q_estimator: estimator for q values
     :param target_estimator: estimator for targets
     :param state_processor: a StateProcessor object
@@ -352,7 +352,7 @@ def DQN(sess,
         # Save the current checkpoint
         saver.save(tf.get_default_session(), checkpoint_path)
 
-        # Reset the env
+        # Reset the envs
         state = reset_env(sess, env, state_processor)
         loss = None
 
@@ -377,7 +377,7 @@ def DQN(sess,
             ))
             sys.stdout.flush()
 
-            # Take a step in the env
+            # Take a step in the envs
             next_state, reward, done, _, action_taken = take_a_step(env,
                                                                     behavior_policy,
                                                                     state,

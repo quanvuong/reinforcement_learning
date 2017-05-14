@@ -4,7 +4,7 @@ import numpy as np
 import math
 from pprint import pprint
 from lib.policy import RandomPolicy
-from env.gridworld import GridWorld
+from envs.gridworld import GridWorld
 
 
 def update_rule(policy, env, state, states_values, discount):

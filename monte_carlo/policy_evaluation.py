@@ -2,7 +2,7 @@ import sys
 sys.path.append('../')
 import numpy as np
 from pprint import pprint
-from env.blackjack import Blackjack
+from envs.blackjack import Blackjack
 from lib.policy import RandomPolicy
 from collections import defaultdict
 

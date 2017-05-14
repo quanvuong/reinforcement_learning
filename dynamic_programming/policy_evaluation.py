@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 sys.path.append('../')
-from env.gridworld import GridWorld
+from envs.gridworld import GridWorld
 from lib.policy import RandomPolicy
 
 

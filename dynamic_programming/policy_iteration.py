@@ -4,7 +4,7 @@ import math
 from policy_evaluation import policy_evaluation
 from pprint import pprint
 sys.path.append('../')
-from env.gridworld import GridWorld
+from envs.gridworld import GridWorld
 from lib.policy import RandomPolicy
 
 

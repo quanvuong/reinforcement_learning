@@ -2,7 +2,7 @@ from gym.envs.toy_text import discrete
 import numpy as np
 from enum import Enum
 import sys
-from env.custom import EnvAbstract
+from envs.custom import EnvAbstract
 
 class Action(Enum):
     UP = 0

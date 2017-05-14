@@ -1,5 +1,5 @@
 from gym.envs.toy_text import BlackjackEnv
-from env.custom import EnvAbstract
+from envs.custom import EnvAbstract
 
 #  spec = None temporary fixes for
 #  https://github.com/openai/gym/pull/583
