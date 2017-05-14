@@ -77,7 +77,7 @@ class Estimator:
         :return: 
         """
         # Placeholder for input
-        # Input are 4 RGB frames of shape 160, 160 each
+        # Input are 4 RGB frames of shape 84, 84 each
         self.X_pl = tf.placeholder(shape=[None, 84, 84, 4],
                                    dtype=tf.uint8,
                                    name='X')
