@@ -23,10 +23,12 @@ print("Observation space shape: {}".format(observation.shape))
 # Atari Actions: 0 (noop), 1 (fire), 2 (left) and 3 (right) are valid actions
 VALID_ACTIONS = [0, 1, 2, 3]
 
+
 class StateProcessor:
     """
     Processes a raw Atari image. Resize and convert to grayscale.
     """
+
     def __init__(self):
         # Build tf graph
         with tf.variable_scope('state_process'):
@@ -48,12 +50,14 @@ class StateProcessor:
         """
         return sess.run(self.output, {self.input_state: state})
 
+
 class Estimator:
     """
     Q-value estimator neural network.
     
     This network is used for both the Q-Network and Target Network
     """
+
     def __init__(self, scope='estimator', summaries_dir=None):
         self.scope = scope
         # Write tensorboard summaries to disk
@@ -177,13 +181,14 @@ def run_test():
         a = np.array([1, 3])
         print(e.update(sess, observations, a, y))
 
-def get_sorted_params(estimator):
 
+def get_sorted_params(estimator):
     params = [
         t for t in tf.trainable_variables() if t.name.startswith(estimator.scope)
     ]
 
     return sorted(params, key=lambda v: v.name)
+
 
 def copy_model_params(sess, estimator1, estimator2):
     """
@@ -201,6 +206,7 @@ def copy_model_params(sess, estimator1, estimator2):
 
     sess.run(update_ops)
 
+
 def make_eps_greedy_policy(estimator, nA):
     """
     Creates an epsilon greedy policy based on a Q-function approximator and epsilon
@@ -209,12 +215,14 @@ def make_eps_greedy_policy(estimator, nA):
     :return: A function that takes (sess, observation, epsilon) as an argument and returns
         the probabilities for each action in the form of a numpy array of length nA
     """
+
     def policy_fn(sess, observation, eps):
         actions = np.ones(nA, dtype=float) * eps / nA
         q_values = estimator.predict(sess, np.expand_dims(observation, 0))[0]
         best_action = np.argmax(q_values)
         actions[best_action] += (1.0 - eps)
         return actions
+
     return policy_fn
 
 
@@ -223,6 +231,7 @@ def reset_env(sess, env, state_processor):
     state = state_processor.process(sess, state)
     state = np.stack([state] * 4, axis=2)
     return state
+
 
 def take_a_step(env, policy, state, eps, sess, state_processor):
     action_probs = policy(sess, state, eps)
@@ -233,6 +242,7 @@ def take_a_step(env, policy, state, eps, sess, state_processor):
     next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
     # print('next_state after appending: {}'.format(next_state))
     return next_state, reward, done, info, action
+
 
 def DQN(sess,
         env,
@@ -316,11 +326,11 @@ def DQN(sess,
     for i in range(replay_memory_init_size):
         eps = epsilons[min(total_time, eps_decay_steps - 1)]
         next_state, reward, done, _, action_taken = take_a_step(env,
-                                                  behavior_policy,
-                                                  state,
-                                                  eps,
-                                                  sess,
-                                                  state_processor)
+                                                                behavior_policy,
+                                                                state,
+                                                                eps,
+                                                                sess,
+                                                                state_processor)
         replay_memory.append(Transition(
             state, action_taken, reward, next_state, done
         ))
@@ -349,7 +359,7 @@ def DQN(sess,
         for t in itertools.count():
 
             # Get epsilon for this step
-            eps = epsilons[min(total_time, eps_decay_steps-1)]
+            eps = epsilons[min(total_time, eps_decay_steps - 1)]
 
             # Add epsilon to tensorboard
             episode_summary = tf.Summary()
@@ -369,11 +379,11 @@ def DQN(sess,
 
             # Take a step in the env
             next_state, reward, done, _, action_taken = take_a_step(env,
-                                                         behavior_policy,
-                                                         state,
-                                                         eps,
-                                                         sess,
-                                                         state_processor)
+                                                                    behavior_policy,
+                                                                    state,
+                                                                    eps,
+                                                                    sess,
+                                                                    state_processor)
 
             # Pop the first element if replay memory is full
             if len(replay_memory) == replay_memory_size:
@@ -395,9 +405,9 @@ def DQN(sess,
 
             # Calculate q values and targets
             q_values_next = target_estimator.predict(sess, next_states_batch)
-            targets_batch =  reward_batch \
-                                + np.invert(done_batch).astype(np.float32) \
-                                    * discount * np.max(q_values_next, axis=1)
+            targets_batch = reward_batch \
+                            + np.invert(done_batch).astype(np.float32) \
+                              * discount * np.max(q_values_next, axis=1)
 
             states_batch = np.array(states_batch)
             loss = q_estimator.update(sess, states_batch, action_batch, targets_batch)
@@ -427,6 +437,7 @@ def DQN(sess,
 
     return episode_lengths, episode_rewards
 
+
 def main():
     tf.reset_default_graph()
 
@@ -453,8 +464,6 @@ def main():
                 timestep, reward
             ))
 
+
 if __name__ == '__main__':
     main()
-
-
-
