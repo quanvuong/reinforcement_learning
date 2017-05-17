@@ -421,7 +421,7 @@ def DQN(sess,
             total_time += 1
 
         # Add summaries to tensorboard
-        episode_summary = tf.Summar()
+        episode_summary = tf.Summary()
         episode_summary.value.add(
             simple_value=episode_rewards[i_episode],
             node_name='episode_reward',
