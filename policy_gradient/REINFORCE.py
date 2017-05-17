@@ -7,6 +7,8 @@ from tensorflow.contrib import layers
 from tensorflow import nn, train
 from collections import namedtuple
 
+tf.logging.set_verbosity(tf.logging.INFO)
+
 sys.path.append('../')
 # Import envs here to run __init__ to register the env with gym
 import envs
