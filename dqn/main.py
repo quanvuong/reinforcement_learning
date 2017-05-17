@@ -11,6 +11,8 @@ from tensorflow import nn
 from tensorflow import summary
 from tensorflow import contrib
 
+tf.logging.set_verbosity(tf.logging.INFO)
+
 env = gym.make('Breakout-v4')
 
 print("Action space size: {}".format(env.action_space.n))
