@@ -1,0 +1,20 @@
+appdirs==1.4.3
+atari-py==0.1.1
+-e git+https://github.com/quanvuong/reinforcement_learning.git@db3ac605e50e39682e4556e983e577b4d062a019#egg=gym
+mock==2.0.0
+numpy==1.12.1
+olefile==0.44
+packaging==16.8
+pbr==3.0.0
+Pillow==4.1.1
+protobuf==3.3.0
+py==1.4.33
+pyglet==1.2.4
+PyOpenGL==3.1.0
+pyparsing==2.2.0
+pytest==3.0.7
+requests==2.14.2
+scipy==0.19.0
+six==1.10.0
+tensorflow==1.1.0
+Werkzeug==0.12.1
