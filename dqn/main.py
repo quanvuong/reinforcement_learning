@@ -425,12 +425,12 @@ def DQN(sess,
         episode_summary.value.add(
             simple_value=episode_rewards[i_episode],
             node_name='episode_reward',
-            tag_name='episode_reward'
+            tag='episode_reward'
         )
         episode_summary.value.add(
             simple_value=episode_lengths[i_episode],
             node_name='episode_reward',
-            tag_name='episode_reward'
+            tag='episode_reward'
         )
         q_estimator.summary_writer.add_summary(episode_summary, total_time)
         q_estimator.summary_writer.flush()
