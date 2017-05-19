@@ -344,10 +344,10 @@ def DQN(sess,
         else:
             state = next_state
 
-    # Record videos
-    env.monitor.start(monitor_path,
-                      resume=True,
-                      video_callable=lambda count: count % record_video_interval == 0)
+    # # Record videos
+    # env.monitor.start(monitor_path,
+    #                   resume=True,
+    #                   video_callable=lambda count: count % record_video_interval == 0)
 
     for i_episode in range(num_episodes):
 
