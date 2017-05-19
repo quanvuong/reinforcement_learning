@@ -1,6 +1,6 @@
 appdirs==1.4.3
 atari-py==0.1.1
--e git+https://github.com/quanvuong/reinforcement_learning.git@db3ac605e50e39682e4556e983e577b4d062a019#egg=gym
+-e git+https://github.com/quanvuong/reinforcement_learning.git@31dacd4b28979235d6b2c34c440494658f4c9d6e#egg=gym
 mock==2.0.0
 numpy==1.12.1
 olefile==0.44
